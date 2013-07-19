@@ -1,32 +1,40 @@
-package vellum;
+package hu.gulyasm.vellum;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
+/**
+ * Lightweight logging class.
+ * 
+ * @author Mate Gulyas
+ * @version 1.0
+ */
 public class Vellum {
 
-	private static final Pattern anonymousClass = Pattern.compile("\\$\\d+$");
 	private static final SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss:SSS");
+	/* Level tags */
 	private static final String DEBUG_TAG = "DEBUG";
 	private static final String INFO_TAG = "INFO";
 	private static final String WARNING_TAG = "WARNING";
 	private static final String ERROR_TAG = "ERROR";
+	/* Level constants */
+	/** Debug level constant */
 	public static final int DEBUG = 1;
+	/** Info level constant */
 	public static final int INFO = 2;
+	/** Warning level constant */
 	public static final int WARNING = 3;
+	/** Error level constant */
 	public static final int ERROR = 4;
+	/** No logging enabled */
 	public static final int OFF = Integer.MAX_VALUE;
+	/* Current level */
 	private static int LEVEL = DEBUG;
+	/* Instance tag */
+	private final String tag;
 
-	private String className() {
-		String className = Thread.currentThread().getStackTrace()[4].getClassName();
-		Matcher m = anonymousClass.matcher(className);
-		if (m != null && m.find()) {
-			className = m.replaceAll("");
-		}
-		return className.substring(className.lastIndexOf('.') + 1);
+	public Vellum(String tag) {
+		this.tag = tag;
 	}
 
 	private static void log(String tag, String lvltag, int lvl, String msg) {
@@ -39,20 +47,48 @@ public class Vellum {
 				msg));
 	}
 
+	/**
+	 * {@link #INFO} level logging.
+	 * 
+	 * @since 1.0
+	 * @param message
+	 *            to log
+	 */
 	public void i(String message) {
-		log(className(), INFO_TAG, INFO, message);
+		log(tag, INFO_TAG, INFO, message);
 	}
 
+	/**
+	 * {@link #DEBUG} level logging.
+	 * 
+	 * @since 1.0
+	 * @param message
+	 *            to log
+	 */
 	public void d(String message) {
-		log(className(), DEBUG_TAG, DEBUG, message);
+		log(tag, DEBUG_TAG, DEBUG, message);
 	}
 
+	/**
+	 * {@link #WARNING} level logging.
+	 * 
+	 * @since 1.0
+	 * @param message
+	 *            to log
+	 */
 	public void w(String message) {
-		log(className(), WARNING_TAG, WARNING, message);
+		log(tag, WARNING_TAG, WARNING, message);
 	}
 
+	/**
+	 * {@link #ERROR} level logging.
+	 * 
+	 * @since 1.0
+	 * @param message
+	 *            to log
+	 */
 	public void e(String message) {
-		log(className(), ERROR_TAG, ERROR, message);
+		log(tag, ERROR_TAG, ERROR, message);
 	}
 
 }
