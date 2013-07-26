@@ -29,7 +29,7 @@ public class Vellum {
 	/** No logging enabled */
 	public static final int OFF = Integer.MAX_VALUE;
 	/* Current level */
-	private static int LEVEL = DEBUG;
+	private static int level = DEBUG;
 	/* Instance tag */
 	private final String tag;
 
@@ -38,13 +38,8 @@ public class Vellum {
 	}
 
 	private static void log(String tag, String lvltag, int lvl, String msg) {
-		if (lvl < LEVEL) return;
-		System.out.println(String.format(
-				"%-13s %-6s %-20s %-30s",
-				formatter.format(new Date()),
-				lvltag,
-				tag,
-				msg));
+		if (lvl < level) return;
+		System.out.println(String.format("%-13s %-6s %-20s %-30s", formatter.format(new Date()), lvltag, tag, msg));
 	}
 
 	/**
@@ -89,6 +84,10 @@ public class Vellum {
 	 */
 	public void e(String message) {
 		log(tag, ERROR_TAG, ERROR, message);
+	}
+
+	public static void setLevel(int level) {
+		Vellum.level = level;
 	}
 
 }
