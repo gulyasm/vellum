@@ -47,10 +47,10 @@ public class Vellum {
 	 * 
 	 * @since 1.0
 	 * @param message
-	 *            to log
+	 *            to log, called with {@link Object#toString()}
 	 */
-	public void i(String message) {
-		log(tag, INFO_TAG, INFO, message);
+	public void i(Object message) {
+		log(tag, INFO_TAG, INFO, message.toString());
 	}
 
 	/**
@@ -58,10 +58,10 @@ public class Vellum {
 	 * 
 	 * @since 1.0
 	 * @param message
-	 *            to log
+	 *            to log, called with {@link Object#toString()}
 	 */
-	public void d(String message) {
-		log(tag, DEBUG_TAG, DEBUG, message);
+	public void d(Object message) {
+		log(tag, DEBUG_TAG, DEBUG, message.toString());
 	}
 
 	/**
@@ -69,10 +69,10 @@ public class Vellum {
 	 * 
 	 * @since 1.0
 	 * @param message
-	 *            to log
+	 *            to log, called with {@link Object#toString()}
 	 */
-	public void w(String message) {
-		log(tag, WARNING_TAG, WARNING, message);
+	public void w(Object message) {
+		log(tag, WARNING_TAG, WARNING, message.toString());
 	}
 
 	/**
@@ -80,10 +80,10 @@ public class Vellum {
 	 * 
 	 * @since 1.0
 	 * @param message
-	 *            to log
+	 *            to log, called with {@link Object#toString()}
 	 */
-	public void e(String message) {
-		log(tag, ERROR_TAG, ERROR, message);
+	public void e(Object message) {
+		log(tag, ERROR_TAG, ERROR, message.toString());
 	}
 
 	public static void setLevel(int level) {
