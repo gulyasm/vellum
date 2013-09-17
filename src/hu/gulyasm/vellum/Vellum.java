@@ -32,7 +32,7 @@ public class Vellum {
 	/** No logging enabled */
 	public static final int OFF = Integer.MAX_VALUE;
 	/* Current level */
-	private static int level = DEBUG;
+	private static int level = INFO;
 	/* Instance tag */
 	private final String tag;
 	/* Stream to log to */
