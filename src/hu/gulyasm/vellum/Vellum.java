@@ -1,5 +1,8 @@
 package hu.gulyasm.vellum;
 
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -32,14 +35,32 @@ public class Vellum {
 	private static int level = DEBUG;
 	/* Instance tag */
 	private final String tag;
+	/* Stream to log to */
+	private OutputStream stream;
 
-	public Vellum(String tag) {
+	public Vellum(String tag, OutputStream stream) {
 		this.tag = tag;
+		this.stream = stream;
 	}
 
-	private static void log(String tag, String lvltag, int lvl, String msg) {
+	public Vellum(String tag) {
+		this(tag, System.out);
+	}
+
+	public void setStream(OutputStream stream) {
+		this.stream = stream;
+	}
+
+	private void log(String tag, String lvltag, int lvl, String msg) {
 		if (lvl < level) return;
-		System.out.println(String.format("%-13s %-6s %-20s %-30s", formatter.format(new Date()), lvltag, tag, msg));
+		String message = String.format("%-13s %-6s %-20s %-30s", formatter.format(new Date()), lvltag, tag, msg);
+		try {
+			stream.write(message.getBytes("utf-8"));
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
