@@ -107,6 +107,13 @@ public class Vellum {
 		log(tag, ERROR_TAG, ERROR, message.toString());
 	}
 
+	/**
+	 * Sets the logging level. Logging level is static in this type, so the
+	 * scope of this setting is the classloader;
+	 * 
+	 * @param level
+	 *            the new level
+	 */
 	public static void setLevel(int level) {
 		Vellum.level = level;
 	}
