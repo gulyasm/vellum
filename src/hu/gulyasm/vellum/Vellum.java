@@ -53,7 +53,7 @@ public class Vellum {
 
 	private void log(String tag, String lvltag, int lvl, String msg) {
 		if (lvl < level) return;
-		String message = String.format("%-13s %-6s %-20s %-30s", formatter.format(new Date()), lvltag, tag, msg);
+		String message = String.format("%-13s %-6s %-20s %-30s\n", formatter.format(new Date()), lvltag, tag, msg);
 		try {
 			stream.write(message.getBytes("utf-8"));
 		} catch (UnsupportedEncodingException e) {
