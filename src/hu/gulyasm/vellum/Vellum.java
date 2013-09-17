@@ -18,7 +18,7 @@ public class Vellum {
 	/* Level tags */
 	private static final String DEBUG_TAG = "DEBUG";
 	private static final String INFO_TAG = "INFO";
-	private static final String WARNING_TAG = "WARNING";
+	private static final String WARNING_TAG = "WARN";
 	private static final String ERROR_TAG = "ERROR";
 	/* Level constants */
 	/** Debug level constant */
